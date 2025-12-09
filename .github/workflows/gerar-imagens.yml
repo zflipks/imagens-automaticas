@@ -43,5 +43,5 @@ jobs:
           git config --global user.name "GitHub Actions"
 
           git add .
-          git commit -m "Imagens atualizadas automaticamente"
+          git commit -m "Imagens atualizadas automaticamente" || echo "Nada para commitar"
           git push
