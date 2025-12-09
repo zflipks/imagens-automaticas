@@ -5,41 +5,62 @@ on:
     - cron: "0 9 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   gerar:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
+    concurrency:
+      group: gerar-imagens-automaticas
+      cancel-in-progress: true
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Configure git user
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Prepare directories
+        run: |
+          mkdir -p imagens/bomdia imagens/boatarde imagens/boanoite
 
       - name: Baixar imagens bom dia
         run: |
-          mkdir -p imagens/bomdia
-          for i in {1..10}; do
-            curl -s "https://source.unsplash.com/random/1080x1080?morning,$i" -o "imagens/bomdia/bomdia_$i.jpg"
+          set -euo pipefail
+          for i in $(seq 1 10); do
+            # -f fail on HTTP errors, -L follow redirects, add sig to avoid cache
+            curl -fL "https://source.unsplash.com/random/1080x1080?morning,$i&sig=$(date +%s%N)$i" -o "imagens/bomdia/bomdia_$i.jpg" || echo "ignoring download failure for bomdia_$i.jpg"
           done
 
       - name: Baixar imagens boa tarde
         run: |
-          mkdir -p imagens/boatarde
-          for i in {1..10}; do
-            curl -s "https://source.unsplash.com/random/1080x1080?afternoon,$i" -o "imagens/boatarde/boatarde_$i.jpg"
+          set -euo pipefail
+          for i in $(seq 1 10); do
+            curl -fL "https://source.unsplash.com/random/1080x1080?afternoon,$i&sig=$(date +%s%N)$i" -o "imagens/boatarde/boatarde_$i.jpg" || echo "ignoring download failure for boatarde_$i.jpg"
           done
 
       - name: Baixar imagens boa noite
         run: |
-          mkdir -p imagens/boanoite
-          for i in {1..10}; do
-            curl -s "https://source.unsplash.com/random/1080x1080?night,$i" -o "imagens/boanoite/boanoite_$i.jpg"
+          set -euo pipefail
+          for i in $(seq 1 10); do
+            curl -fL "https://source.unsplash.com/random/1080x1080?night,$i&sig=$(date +%s%N)$i" -o "imagens/boanoite/boanoite_$i.jpg" || echo "ignoring download failure for boanoite_$i.jpg"
           done
 
-      - name: Commit e enviar
+      - name: Commit and push changes
         run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add .
-          git commit -m "Imagens atualizadas automaticamente" || echo "Nada para commitar"
-          git push
+          set -euo pipefail
+          git add imagens || true
+          # If there are staged changes, commit and push; otherwise do nothing.
+          if git diff --cached --quiet; then
+            echo "Nada para commitar"
+          else
+            git commit -m "Imagens atualizadas automaticamente"
+            git push
+          fi
