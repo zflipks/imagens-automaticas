@@ -2,32 +2,46 @@ name: Gerar imagens automáticas
 
 on:
   schedule:
-    - cron: "0 6 * * *"  # todo dia às 06h
+    - cron: "0 9 * * *"   # roda todos os dias às 06:00 do Brasil (09:00 UTC)
   workflow_dispatch:
 
 jobs:
   gerar:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Instalar Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Instalar dependências
-        run: pip install pillow requests
-
-      - name: Gerar imagens
-        run: python gerar_imagens.py
-
-      - name: Commit e push
+      - name: Baixar imagens — Bom dia
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Imagens atualizadas automaticamente" || echo "Nada para commitar"
-          git push
+          mkdir -p imagens/bomdia
+          for i in {1..10}; do
+            curl -s "https://source.unsplash.com/random/1080x1080?morning,$i" -o "imagens/bomdia/bomdia_$i.jpg"
+          done
 
+      - name: Baixar imagens — Boa tarde
+        run: |
+          mkdir -p imagens/boatarde
+          for i in {1..10}; do
+            curl -s "https://source.unsplash.com/random/1080x1080?afternoon,$i" -o "imagens/boatarde/boatarde_$i.jpg"
+          done
+
+      - name: Baixar imagens — Boa noite
+        run: |
+          mkdir -p imagens/boanoite
+          for i in {1..10}; do
+            curl -s "https://source.unsplash.com/random/1080x1080?night,$i" -o "imagens/boanoite/boanoite_$i.jpg"
+          done
+
+      - name: Commit e enviar
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          git add .
+          git commit -m "Imagens atualizadas automaticamente"
+          git push
