@@ -2,7 +2,7 @@ name: Gerar imagens automáticas
 
 on:
   schedule:
-    - cron: "0 9 * * *"   # 06:00 do Brasil
+    - cron: "0 9 * * *" 
   workflow_dispatch:
 
 jobs:
@@ -47,30 +47,30 @@ jobs:
 
       - name: Criar JSON
         run: |
-          echo "{" > imagens.json
+          echo "{" > index.json
 
-          echo '  "bomdia": [' >> imagens.json
+          echo '  "bomdia": [' >> index.json
           for i in {1..10}; do
-            echo "    \"https://raw.githubusercontent.com/${{ github.repository }}/main/imagens/bomdia/bomdia_$i.jpg\"," >> imagens.json
+            echo "    \"https://raw.githubusercontent.com/${{ github.repository }}/main/imagens/bomdia/bomdia_$i.jpg\"," >> index.json
           done
-          sed -i '$ s/,$//' imagens.json
-          echo "  ]," >> imagens.json
+          sed -i '$ s/,$//' index.json
+          echo "  ]," >> index.json
 
-          echo '  "boatarde": [' >> imagens.json
+          echo '  "boatarde": [' >> index.json
           for i in {1..10}; do
-            echo "    \"https://raw.githubusercontent.com/${{ github.repository }}/main/imagens/boatarde/boatarde_$i.jpg\"," >> imagens.json
+            echo "    \"https://raw.githubusercontent.com/${{ github.repository }}/main/imagens/boatarde/boatarde_$i.jpg\"," >> index.json
           done
-          sed -i '$ s/,$//' imagens.json
-          echo "  ]," >> imagens.json
+          sed -i '$ s/,$//' index.json
+          echo "  ]," >> index.json
 
-          echo '  "boanoite": [' >> imagens.json
+          echo '  "boanoite": [' >> index.json
           for i in {1..10}; do
-            echo "    \"https://raw.githubusercontent.com/${{ github.repository }}/main/imagens/boanoite/boanoite_$i.jpg\"," >> imagens.json
+            echo "    \"https://raw.githubusercontent.com/${{ github.repository }}/main/imagens/boanoite/boanoite_$i.jpg\"," >> index.json
           done
-          sed -i '$ s/,$//' imagens.json
-          echo "  ]" >> imagens.json
+          sed -i '$ s/,$//' index.json
+          echo "  ]" >> index.json
 
-          echo "}" >> imagens.json
+          echo "}" >> index.json
 
       # ==========================
       # COMMIT FINAL
@@ -82,5 +82,5 @@ jobs:
           git config --global user.name "GitHub Actions"
 
           git add .
-          git commit -m "Imagens atualizadas automaticamente"
+          git commit -m "Imagens atualizadas automaticamente" || echo "Nada para commitar"
           git push
