@@ -1,66 +1,86 @@
-name: gerar-imagens-automaticas
+name: Gerar imagens automáticas
 
 on:
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "0 9 * * *"   # 06:00 do Brasil
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   gerar:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
-    concurrency:
-      group: gerar-imagens-automaticas
-      cancel-in-progress: true
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          persist-credentials: true
-          fetch-depth: 0
 
-      - name: Configure git user
-        run: |
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
+      # ==========================
+      # GERAR IMAGENS AUTOMÁTICAS
+      # ==========================
 
-      - name: Prepare directories
+      - name: Gerar imagens — Bom dia
         run: |
-          mkdir -p imagens/bomdia imagens/boatarde imagens/boanoite
-
-      - name: Baixar imagens bom dia
-        run: |
-          set -euo pipefail
-          for i in $(seq 1 10); do
-            # -f fail on HTTP errors, -L follow redirects, add sig to avoid cache
-            curl -fL "https://source.unsplash.com/random/1080x1080?morning,$i&sig=$(date +%s%N)$i" -o "imagens/bomdia/bomdia_$i.jpg" || echo "ignoring download failure for bomdia_$i.jpg"
+          mkdir -p imagens/bomdia
+          for i in {1..10}; do
+            curl -s "https://source.unsplash.com/random/1080x1080?morning&sig=$RANDOM" -o "imagens/bomdia/bomdia_$i.jpg"
           done
 
-      - name: Baixar imagens boa tarde
+      - name: Gerar imagens — Boa tarde
         run: |
-          set -euo pipefail
-          for i in $(seq 1 10); do
-            curl -fL "https://source.unsplash.com/random/1080x1080?afternoon,$i&sig=$(date +%s%N)$i" -o "imagens/boatarde/boatarde_$i.jpg" || echo "ignoring download failure for boatarde_$i.jpg"
+          mkdir -p imagens/boatarde
+          for i in {1..10}; do
+            curl -s "https://source.unsplash.com/random/1080x1080?afternoon&sig=$RANDOM" -o "imagens/boatarde/boatarde_$i.jpg"
           done
 
-      - name: Baixar imagens boa noite
+      - name: Gerar imagens — Boa noite
         run: |
-          set -euo pipefail
-          for i in $(seq 1 10); do
-            curl -fL "https://source.unsplash.com/random/1080x1080?night,$i&sig=$(date +%s%N)$i" -o "imagens/boanoite/boanoite_$i.jpg" || echo "ignoring download failure for boanoite_$i.jpg"
+          mkdir -p imagens/boanoite
+          for i in {1..10}; do
+            curl -s "https://source.unsplash.com/random/1080x1080?night&sig=$RANDOM" -o "imagens/boanoite/boanoite_$i.jpg"
           done
 
-      - name: Commit and push changes
+      # ==========================
+      # GERAR O JSON AUTOMÁTICO
+      # ==========================
+
+      - name: Criar JSON
         run: |
-          set -euo pipefail
-          git add imagens || true
-          # If there are staged changes, commit and push; otherwise do nothing.
-          if git diff --cached --quiet; then
-            echo "Nada para commitar"
-          else
-            git commit -m "Imagens atualizadas automaticamente"
-            git push
-          fi
+          echo "{" > imagens.json
+
+          echo '  "bomdia": [' >> imagens.json
+          for i in {1..10}; do
+            echo "    \"https://raw.githubusercontent.com/${{ github.repository }}/main/imagens/bomdia/bomdia_$i.jpg\"," >> imagens.json
+          done
+          sed -i '$ s/,$//' imagens.json
+          echo "  ]," >> imagens.json
+
+          echo '  "boatarde": [' >> imagens.json
+          for i in {1..10}; do
+            echo "    \"https://raw.githubusercontent.com/${{ github.repository }}/main/imagens/boatarde/boatarde_$i.jpg\"," >> imagens.json
+          done
+          sed -i '$ s/,$//' imagens.json
+          echo "  ]," >> imagens.json
+
+          echo '  "boanoite": [' >> imagens.json
+          for i in {1..10}; do
+            echo "    \"https://raw.githubusercontent.com/${{ github.repository }}/main/imagens/boanoite/boanoite_$i.jpg\"," >> imagens.json
+          done
+          sed -i '$ s/,$//' imagens.json
+          echo "  ]" >> imagens.json
+
+          echo "}" >> imagens.json
+
+      # ==========================
+      # COMMIT FINAL
+      # ==========================
+
+      - name: Commit e enviar
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          git add .
+          git commit -m "Imagens atualizadas automaticamente"
+          git push
