@@ -63,11 +63,14 @@ jobs:
       # 3) COMMIT FINAL
       # ==========================================================
 
-      - name: Commit e enviar
+            - name: Commit e enviar
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
 
+          # Atualiza o repositório antes de enviar
+          git pull origin main --rebase || true
+
           git add .
           git commit -m "Imagens e index atualizados automaticamente" || echo "Nada para commitar"
-          git push
+          git push origin HEAD:main
