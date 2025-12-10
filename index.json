@@ -1,4 +1,185 @@
 {
-  "generated_at": "2025-12-10T20:52:51.071Z",
-  "images": []
+  "generated_at": "2025-12-10T20:59:54.029Z",
+  "images": [
+    {
+      "path": "imagens/boanoite/boanoite_1.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.683Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boanoite/boanoite_10.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:50.119Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boanoite/boanoite_2.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.729Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boanoite/boanoite_3.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.777Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boanoite/boanoite_4.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.830Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boanoite/boanoite_5.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.877Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boanoite/boanoite_6.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.924Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boanoite/boanoite_7.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.972Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boanoite/boanoite_8.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:50.018Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boanoite/boanoite_9.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:50.072Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_1.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.129Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_10.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.621Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_2.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.183Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_3.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.230Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_4.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.284Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_5.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.333Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_6.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.390Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_7.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.437Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_8.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.490Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/boatarde/boatarde_9.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.539Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_1.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:48.566Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_10.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.065Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_2.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:48.618Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_3.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:48.671Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_4.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:48.732Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_5.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:48.786Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_6.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:48.839Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_7.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:48.893Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_8.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:48.956Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    },
+    {
+      "path": "imagens/bomdia/bomdia_9.jpg",
+      "size": 567,
+      "mtime": "2025-12-10T20:59:49.004Z",
+      "sha256": "860908d39ccee3bcba61f66e9ac45fc353d59a7505f50705f35852bc1ee6d17e"
+    }
+  ]
 }
