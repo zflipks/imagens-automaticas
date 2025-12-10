@@ -1,43 +1,73 @@
-name: Generate image index
+name: Gerar imagens automáticas + index
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "0 9 * * *"     # roda às 06:00 no Brasil
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  gerar:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           persist-credentials: true
           fetch-depth: 0
 
+      # ==========================================================
+      # 1) GERAR IMAGENS
+      # ==========================================================
+
+      - name: Gerar imagens — Bom dia
+        run: |
+          mkdir -p imagens/bomdia
+          for i in {1..10}; do
+            curl -s "https://source.unsplash.com/random/1080x1080?morning&sig=$RANDOM" \
+              -o "imagens/bomdia/bomdia_$i.jpg"
+          done
+
+      - name: Gerar imagens — Boa tarde
+        run: |
+          mkdir -p imagens/boatarde
+          for i in {1..10}; do
+            curl -s "https://source.unsplash.com/random/1080x1080?afternoon&sig=$RANDOM" \
+              -o "imagens/boatarde/boatarde_$i.jpg"
+          done
+
+      - name: Gerar imagens — Boa noite
+        run: |
+          mkdir -p imagens/boanoite
+          for i in {1..10}; do
+            curl -s "https://source.unsplash.com/random/1080x1080?night&sig=$RANDOM" \
+              -o "imagens/boanoite/boanoite_$i.jpg"
+          done
+
+      # ==========================================================
+      # 2) GERAR index.json
+      # ==========================================================
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
-      - name: Install (no deps required)
-        run: npm ci || true
-
-      - name: Generate index.json
+      - name: Gerar index.json
         run: node generate-index.js
 
-      - name: Commit and push index.json if changed
+      # ==========================================================
+      # 3) COMMIT FINAL
+      # ==========================================================
+
+      - name: Commit e enviar
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git status --porcelain | grep -q "index.json"; then
-            git add index.json
-            git commit -m "chore: update index.json"
-            git push origin HEAD:main || git push
-          else
-            echo "No changes to index.json"
-          fi
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          git add .
+          git commit -m "Imagens e index atualizados automaticamente" || echo "Nada para commitar"
+          git push
