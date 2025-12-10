@@ -55,7 +55,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
       - name: Gerar index.json
         run: node generate-index.js
 
@@ -63,8 +62,8 @@ jobs:
       # 3) COMMIT FINAL
       # ==========================================================
 
-            - name: Commit e enviar
-        run: |
+        - name: Commit e enviar
+          run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
 
