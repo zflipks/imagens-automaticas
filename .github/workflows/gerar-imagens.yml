@@ -1,6 +1,8 @@
-name: Gerar imagens automaticamente
+name: Gerar imagens automáticas + index
 
 on:
+  schedule:
+    - cron: "0 9 * * *"
   workflow_dispatch:
 
 permissions:
@@ -9,41 +11,62 @@ permissions:
 jobs:
   gerar:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Clonar o repositório
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ==========================================================
+      # 1) GERAR IMAGENS — Usando Picsum (estável, sem 503)
+      # ==========================================================
 
       - name: Gerar imagens — Bom dia
         run: |
           mkdir -p imagens/bomdia
           for i in {1..10}; do
-            curl -L --fail --user-agent "Mozilla/5.0" \
-            "https://source.unsplash.com/random/1080x1080?morning&sig=$RANDOM" \
-            -o "imagens/bomdia/bomdia_$i.jpg" || true
+            curl -L "https://picsum.photos/1080/1080?random=$RANDOM" \
+              -o "imagens/bomdia/bomdia_$i.jpg" || true
           done
 
       - name: Gerar imagens — Boa tarde
         run: |
           mkdir -p imagens/boatarde
           for i in {1..10}; do
-            curl -L --fail --user-agent "Mozilla/5.0" \
-            "https://source.unsplash.com/random/1080x1080?afternoon&sig=$RANDOM" \
-            -o "imagens/boatarde/boatarde_$i.jpg" || true
+            curl -L "https://picsum.photos/1080/1080?random=$RANDOM" \
+              -o "imagens/boatarde/boatarde_$i.jpg" || true
           done
 
       - name: Gerar imagens — Boa noite
         run: |
           mkdir -p imagens/boanoite
           for i in {1..10}; do
-            curl -L --fail --user-agent "Mozilla/5.0" \
-            "https://source.unsplash.com/random/1080x1080?night&sig=$RANDOM" \
-            -o "imagens/boanoite/boanoite_$i.jpg" || true
+            curl -L "https://picsum.photos/1080/1080?random=$RANDOM" \
+              -o "imagens/boanoite/boanoite_$i.jpg" || true
           done
 
-      - name: Commit e push
+      # ==========================================================
+      # 2) GERAR index.json
+      # ==========================================================
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Gerar index.json
+        run: node generate-index.js
+
+      # ==========================================================
+      # 3) COMMIT FINAL
+      # ==========================================================
+
+      - name: Commit e enviar
         run: |
-          git config --local user.name "GitHub Actions"
-          git config --local user.email "actions@github.com"
-          git add .
-          git commit -m "Imagens atualizadas automaticamente" || echo "Nada para commit"
-          git push
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          git add -A
+          git diff --cached --quiet || git commit -m "Imagens e index atualizados automaticamente"
+          git push origin main --force
