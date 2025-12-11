@@ -13,19 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-            - name: Commit e enviar
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-          # Adiciona tudo
-          git add -A
-
-          # Cria commit apenas se houver mudanças
-          git diff --cached --quiet || git commit -m "Imagens e index atualizados automaticamente"
-
-          # Força o push para evitar erro non-fast-forward
-          git push origin main --force
+      # ==========================================================
+      # 1) GERAR IMAGENS
+      # ==========================================================
 
       - name: Gerar imagens — Bom dia
         run: |
@@ -67,7 +62,7 @@ jobs:
         run: node generate-index.js
 
       # ==========================================================
-      # 3) COMMIT FINAL
+      # 3) COMMIT FINAL (CORRIGIDO)
       # ==========================================================
 
       - name: Commit e enviar
@@ -75,8 +70,11 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
 
-          git pull origin main --rebase || true
+          # Adiciona tudo
+          git add -A
 
-          git add .
-          git commit -m "Imagens e index atualizados automaticamente" || echo "Nada para commitar"
-          git push origin HEAD:main
+          # Commit somente se houver mudanças
+          git diff --cached --quiet || git commit -m "Imagens e index atualizados automaticamente"
+
+          # Força push para evitar erro non-fast-forward
+          git push origin main --force
