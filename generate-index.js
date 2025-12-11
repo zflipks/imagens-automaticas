@@ -4,6 +4,7 @@ const crypto = require('crypto');
 
 const IMAGE_EXTS = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.bmp', '.tiff'];
 const IGNORED_DIRS = ['node_modules', '.git', '.github'];
+const IGNORED_FILES = ['index.json']; // <-- ADICIONADO
 
 async function walk(dir) {
   let results = [];
@@ -11,7 +12,10 @@ async function walk(dir) {
   for (const dirent of list) {
     const name = dirent.name;
     const full = path.join(dir, name);
+
     if (IGNORED_DIRS.includes(name)) continue;
+    if (IGNORED_FILES.includes(name)) continue; // <-- ADICIONADO
+
     if (dirent.isDirectory()) {
       results = results.concat(await walk(full));
     } else {
