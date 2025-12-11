@@ -2,7 +2,7 @@ name: Gerar imagens automáticas + index
 
 on:
   schedule:
-    - cron: "0 9 * * *"     # roda às 06:00 no Brasil
+    - cron: "0 9 * * *"
   workflow_dispatch:
 
 permissions:
@@ -20,31 +20,34 @@ jobs:
           fetch-depth: 0
 
       # ==========================================================
-      # 1) GERAR IMAGENS
+      # 1) GERAR IMAGENS (Com correção do Unsplash)
       # ==========================================================
 
       - name: Gerar imagens — Bom dia
         run: |
           mkdir -p imagens/bomdia
           for i in {1..10}; do
-            curl -s "https://source.unsplash.com/random/1080x1080?morning&sig=$RANDOM" \
-              -o "imagens/bomdia/bomdia_$i.jpg"
+            curl -L --fail --user-agent "Mozilla/5.0" \
+              "https://source.unsplash.com/random/1080x1080?morning&sig=$RANDOM" \
+              -o "imagens/bomdia/bomdia_$i.jpg" || rm "imagens/bomdia/bomdia_$i.jpg"
           done
 
       - name: Gerar imagens — Boa tarde
         run: |
           mkdir -p imagens/boatarde
           for i in {1..10}; do
-            curl -s "https://source.unsplash.com/random/1080x1080?afternoon&sig=$RANDOM" \
-              -o "imagens/boatarde/boatarde_$i.jpg"
+            curl -L --fail --user-agent "Mozilla/5.0" \
+              "https://source.unsplash.com/random/1080x1080?afternoon&sig=$RANDOM" \
+              -o "imagens/boatarde/boatarde_$i.jpg" || rm "imagens/boatarde/boatarde_$i.jpg"
           done
 
       - name: Gerar imagens — Boa noite
         run: |
           mkdir -p imagens/boanoite
           for i in {1..10}; do
-            curl -s "https://source.unsplash.com/random/1080x1080?night&sig=$RANDOM" \
-              -o "imagens/boanoite/boanoite_$i.jpg"
+            curl -L --fail --user-agent "Mozilla/5.0" \
+              "https://source.unsplash.com/random/1080x1080?night&sig=$RANDOM" \
+              -o "imagens/boanoite/boanoite_$i.jpg" || rm "imagens/boanoite/boanoite_$i.jpg"
           done
 
       # ==========================================================
@@ -68,7 +71,6 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
 
-          # Atualiza o repositório antes de enviar
           git pull origin main --rebase || true
 
           git add .
