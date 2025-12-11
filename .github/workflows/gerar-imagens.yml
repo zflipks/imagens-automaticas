@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  workflows: write
 
 jobs:
   gerar:
@@ -60,7 +59,5 @@ jobs:
           git config --global user.name "GitHub Actions"
 
           git add -A
-
           git diff --cached --quiet || git commit -m "Imagens e index atualizados automaticamente"
-
           git push origin main --force
