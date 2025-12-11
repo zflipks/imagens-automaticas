@@ -13,15 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-          fetch-depth: 0
+            - name: Commit e enviar
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
 
-      # ==========================================================
-      # 1) GERAR IMAGENS (Com correção do Unsplash)
-      # ==========================================================
+          # Adiciona tudo
+          git add -A
+
+          # Cria commit apenas se houver mudanças
+          git diff --cached --quiet || git commit -m "Imagens e index atualizados automaticamente"
+
+          # Força o push para evitar erro non-fast-forward
+          git push origin main --force
 
       - name: Gerar imagens — Bom dia
         run: |
