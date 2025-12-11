@@ -1,8 +1,6 @@
-name: Gerar imagens automáticas + index
+name: Gerar imagens automaticamente
 
 on:
-  schedule:
-    - cron: "0 9 * * *"
   workflow_dispatch:
 
 permissions:
@@ -11,20 +9,17 @@ permissions:
 jobs:
   gerar:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Clonar o repositório
+        uses: actions/checkout@v3
 
       - name: Gerar imagens — Bom dia
         run: |
           mkdir -p imagens/bomdia
           for i in {1..10}; do
             curl -L --fail --user-agent "Mozilla/5.0" \
-              "https://source.unsplash.com/random/1080x1080?morning&sig=$RANDOM" \
-              -o "imagens/bomdia/bomdia_$i.jpg" || rm "imagens/bomdia/bomdia_$i.jpg"
+            "https://source.unsplash.com/random/1080x1080?morning&sig=$RANDOM" \
+            -o "imagens/bomdia/bomdia_$i.jpg" || true
           done
 
       - name: Gerar imagens — Boa tarde
@@ -32,8 +27,8 @@ jobs:
           mkdir -p imagens/boatarde
           for i in {1..10}; do
             curl -L --fail --user-agent "Mozilla/5.0" \
-              "https://source.unsplash.com/random/1080x1080?afternoon&sig=$RANDOM" \
-              -o "imagens/boatarde/boatarde_$i.jpg" || rm "imagens/boatarde/boatarde_$i.jpg"
+            "https://source.unsplash.com/random/1080x1080?afternoon&sig=$RANDOM" \
+            -o "imagens/boatarde/boatarde_$i.jpg" || true
           done
 
       - name: Gerar imagens — Boa noite
@@ -41,23 +36,14 @@ jobs:
           mkdir -p imagens/boanoite
           for i in {1..10}; do
             curl -L --fail --user-agent "Mozilla/5.0" \
-              "https://source.unsplash.com/random/1080x1080?night&sig=$RANDOM" \
-              -o "imagens/boanoite/boanoite_$i.jpg" || rm "imagens/boanoite/boanoite_$i.jpg"
+            "https://source.unsplash.com/random/1080x1080?night&sig=$RANDOM" \
+            -o "imagens/boanoite/boanoite_$i.jpg" || true
           done
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Gerar index.json
-        run: node generate-index.js
-
-      - name: Commit e enviar
+      - name: Commit e push
         run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-
-          git add -A
-          git diff --cached --quiet || git commit -m "Imagens e index atualizados automaticamente"
-          git push origin main --force
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git add .
+          git commit -m "Imagens atualizadas automaticamente" || echo "Nada para commit"
+          git push
