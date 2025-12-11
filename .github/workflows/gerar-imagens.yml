@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  workflows: write   # ← NECESSÁRIO PARA PERMITIR PUSH
 
 jobs:
   gerar:
@@ -45,7 +46,6 @@ jobs:
               -o "imagens/boanoite/boanoite_$i.jpg" || rm "imagens/boanoite/boanoite_$i.jpg"
           done
 
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -54,17 +54,13 @@ jobs:
       - name: Gerar index.json
         run: node generate-index.js
 
-
       - name: Commit e enviar
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
 
-          # Adiciona tudo
           git add -A
 
-          # Commit somente se houver mudanças
           git diff --cached --quiet || git commit -m "Imagens e index atualizados automaticamente"
 
-          # Força push para evitar erro non-fast-forward
           git push origin main --force
