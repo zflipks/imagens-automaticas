@@ -7,7 +7,7 @@ on:
 
 permissions:
   contents: write
-  workflows: write   # ← NECESSÁRIO PARA PERMITIR PUSH
+  workflows: write   #
 
 jobs:
   gerar:
