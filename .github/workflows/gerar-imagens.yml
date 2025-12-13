@@ -30,7 +30,7 @@ jobs:
         run: |
           python - <<EOF
           import requests
-          print("REQUESTS OK", requests._version_)
+          print("REQUESTS OK", requests.__version__)
           EOF
 
       - name: Gerar imagens
