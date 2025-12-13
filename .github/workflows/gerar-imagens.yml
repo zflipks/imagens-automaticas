@@ -12,7 +12,7 @@ jobs:
   gerar:
     runs-on: ubuntu-latest
     
-     steps:
+  steps:
       - name: Checkout do Repositório
         uses: actions/checkout@v4
         with:
