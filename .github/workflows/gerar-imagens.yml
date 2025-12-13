@@ -5,12 +5,15 @@ on:
     - cron: "0 6 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   gerar:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do repositório
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Configurar Python
@@ -20,9 +23,15 @@ jobs:
 
       - name: Instalar dependências
         run: |
-          python -m ensurepip --upgrade
           python -m pip install --upgrade pip
           python -m pip install pillow requests
+
+      - name: Teste requests
+        run: |
+          python - <<EOF
+          import requests
+          print("REQUESTS OK", requests._version_)
+          EOF
 
       - name: Gerar imagens
         run: |
@@ -30,8 +39,8 @@ jobs:
 
       - name: Commit automático
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           git add imagens index.json
           git commit -m "Atualização diária de imagens" || echo "Nada para commitar"
           git push
