@@ -33,7 +33,7 @@ jobs:
         run: |
           python gerar_imagens.py
 
-      - name: Commit e Push Automático (Corrigido)
+      - name: Commit e Push Automático (Com Autenticação Forçada)
         run: |
           # 1. Configurar Usuário
           git config user.name "github-actions"
@@ -45,9 +45,12 @@ jobs:
           # 3. Commitar alterações (o '|| echo...' permite que o job continue se não houver mudanças)
           git commit -m "Atualização diária de imagens" || echo "Nada para commitar"
           
-          # 4. Sincronizar: Puxa alterações remotas e aplica seu commit por cima (rebase).
-          #    Isso resolve o erro de 'rejected' se houver commits novos no GitHub.
-          git pull --rebase origin main 
+          # Define a URL remota usando o token para autenticação
+          # Isso garante que o Action tem permissão para ler e escrever no seu repositório.
+          REMOTE_URL="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
           
-          # 5. Push: Envia o histórico sincronizado
-          git push
+          # 4. Sincronizar (Pull/Rebase) usando a URL autenticada.
+          git pull --rebase $REMOTE_URL main 
+          
+          # 5. Push (Envia o histórico sincronizado para a URL autenticada)
+          git push $REMOTE_URL main
