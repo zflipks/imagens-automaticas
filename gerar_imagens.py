@@ -69,4 +69,5 @@ def gerar_imagens():
 
 
 if __name__ == "__main__":
+    pass
     gerar_imagens()
