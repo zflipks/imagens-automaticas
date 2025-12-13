@@ -72,3 +72,18 @@ def atualizar_index():
 
 if __name__ == "__main__":
     atualizar_index()
+
+index = {
+    "bomdia": [],
+    "boatarde": [],
+    "boanoite": []
+}
+
+for cat in CATEGORIAS:
+    pasta = f"imagens/{cat}"
+    arquivos = sorted(os.listdir(pasta))
+    for arq in arquivos:
+        index[cat].append(f"{pasta}/{arq}")
+
+with open("index.json", "w", encoding="utf-8") as f:
+    json.dump(index, f, ensure_ascii=False, indent=2)
