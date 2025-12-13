@@ -2,13 +2,10 @@ name: Gerar imagens diárias
 
 on:
   schedule:
-    # Cronograma para executar diariamente às 06:00 UTC (9:00 BRT no horário de verão)
     - cron: "0 6 * * *"
-  # Permite execução manual
   workflow_dispatch:
 
 permissions:
-  # Permissão de escrita necessária para a action de commit funcionar
   contents: write
 
 jobs:
@@ -19,7 +16,6 @@ jobs:
       - name: Checkout do Repositório
         uses: actions/checkout@v4
         with:
-          # Garante que o token de acesso seja usado para as operações Git
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configurar Python 3.10
@@ -33,19 +29,13 @@ jobs:
           python -m pip install pillow requests
 
       - name: Gerar Imagens
-        # Certifique-se de que o arquivo gerar_imagens.py foi corrigido para __name__ == "__main__"
         run: |
           python gerar_imagens.py
 
       - name: Commit e Push Automático
-        # Esta Action resolve o erro 'rejected' (fetch first)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          # Arquivos que serão adicionados ao commit
           commit_files: 'imagens index.json'
-          # Mensagem do commit
           commit_message: 'Atualização diária de imagens'
-          # Configuração do autor do commit
           commit_author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
-          # Branch de destino
           branch: main
