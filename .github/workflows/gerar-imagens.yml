@@ -1,72 +1,35 @@
-name: Gerar imagens automáticas + index
+name: Gerar imagens diárias
 
 on:
   schedule:
-    - cron: "0 9 * * *"
+    - cron: "0 6 * * *" # todo dia às 06:00 UTC
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   gerar:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout do repositório
         uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
         with:
-          fetch-depth: 0
+          python-version: "3.10"
 
-      # ==========================================================
-      # 1) GERAR IMAGENS — Usando Picsum (estável, sem 503)
-      # ==========================================================
-
-      - name: Gerar imagens — Bom dia
+      - name: Instalar dependências
         run: |
-          mkdir -p imagens/bomdia
-          for i in {1..10}; do
-            curl -L "https://picsum.photos/1080/1080?random=$RANDOM" \
-              -o "imagens/bomdia/bomdia_$i.jpg" || true
-          done
+          pip install pillow
 
-      - name: Gerar imagens — Boa tarde
+      - name: Gerar imagens
         run: |
-          mkdir -p imagens/boatarde
-          for i in {1..10}; do
-            curl -L "https://picsum.photos/1080/1080?random=$RANDOM" \
-              -o "imagens/boatarde/boatarde_$i.jpg" || true
-          done
+          python gerar_imagens.py
 
-      - name: Gerar imagens — Boa noite
+      - name: Commit automático
         run: |
-          mkdir -p imagens/boanoite
-          for i in {1..10}; do
-            curl -L "https://picsum.photos/1080/1080?random=$RANDOM" \
-              -o "imagens/boanoite/boanoite_$i.jpg" || true
-          done
-
-      # ==========================================================
-      # 2) GERAR index.json
-      # ==========================================================
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Gerar index.json
-        run: node generate-index.js
-
-      # ==========================================================
-      # 3) COMMIT FINAL
-      # ==========================================================
-
-      - name: Commit e enviar
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-
-          git add -A
-          git diff --cached --quiet || git commit -m "Imagens e index atualizados automaticamente"
-          git push origin main --force
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Atualização diária de imagens" || echo "Nada para commitar"
+          git push
