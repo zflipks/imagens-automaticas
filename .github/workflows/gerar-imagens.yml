@@ -32,8 +32,13 @@ jobs:
 
       - name: Commit automático
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add imagens index.json
-          git commit -m "Atualização diária de imagens" || echo "Nada para commitar"
-          git push
+         git config --global user.name "github-actions"
+         git config --global user.email "actions@github.com"
+
+         git restore --staged .github/workflows/gerar-imagens.yml || true
+         git checkout -- .github/workflows/gerar-imagens.yml || true
+
+         git add imagens index.json
+         git commit -m "Atualização diária de imagens" || echo "Nada para commitar"
+         git push
+
