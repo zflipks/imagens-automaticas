@@ -8,7 +8,7 @@ on:
 permissions:
  contents: write
  jobs:
-  gerar:
+ gerar:
     runs-on: ubuntu-latest
     
    steps:
