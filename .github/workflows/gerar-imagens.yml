@@ -2,8 +2,11 @@ name: Gerar imagens diárias
 
 on:
   schedule:
-    - cron: "0 6 * * *" # todo dia às 06:00 UTC
+    - cron: "0 6 * * *" # 06:00 UTC (03:00 Brasil)
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   gerar:
@@ -18,23 +21,21 @@ jobs:
         with:
           python-version: "3.10"
 
+      - name: Atualizar pip
+        run: python -m pip install --upgrade pip
+
       - name: Instalar dependências
         run: |
-         pip install pillow requests
+          python -m pip install pillow
+          python -m pip install requests
 
       - name: Gerar imagens
-        run: |
-          python gerar_imagens.py
+        run: python gerar_imagens.py
 
       - name: Commit automático
         run: |
-         git config --global user.name "github-actions"
-         git config --global user.email "actions@github.com"
-
-         git restore --staged .github/workflows/gerar-imagens.yml || true
-         git checkout -- .github/workflows/gerar-imagens.yml || true
-
-         git add imagens index.json
-         git commit -m "Atualização diária de imagens" || echo "Nada para commitar"
-         git push
-
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add imagens index.json
+          git commit -m "Atualização diária de imagens" || echo "Nada para commitar"
+          git push
