@@ -12,7 +12,7 @@ jobs:
   gerar:
   runs-on: ubuntu-latest
     
-      - name: Checkout do Repositório
+     - name: Checkout do Repositório
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
