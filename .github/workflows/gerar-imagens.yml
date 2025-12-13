@@ -2,10 +2,13 @@ name: Gerar imagens diárias
 
 on:
   schedule:
+    # Cronograma para executar diariamente às 06:00 UTC (9:00 BRT no horário de verão)
     - cron: "0 6 * * *"
+  # Permite execução manual
   workflow_dispatch:
 
 permissions:
+  # Permissão de escrita necessária para a action de commit funcionar
   contents: write
 
 jobs:
@@ -13,52 +16,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout do Repositório
         uses: actions/checkout@v4
         with:
-          # Use o GITHUB_TOKEN para autenticar o checkout
+          # Garante que o token de acesso seja usado para as operações Git
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Configurar Python
+      - name: Configurar Python 3.10
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      - name: Instalar dependências
+      - name: Instalar Dependências
         run: |
           python -m pip install --upgrade pip
           python -m pip install pillow requests
 
-      - name: Gerar imagens
+      - name: Gerar Imagens
+        # Certifique-se de que o arquivo gerar_imagens.py foi corrigido para __name__ == "__main__"
         run: |
           python gerar_imagens.py
 
-     name: Gerar imagens diárias
-# ... (Partes de 'on', 'permissions', 'jobs', 'runs-on' e primeiras etapas intactas)
-
-jobs:
-  gerar:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        # Mantenha esta linha para garantir que o token está sendo usado para checkout
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }} 
-          
-      # ... (Etapas de Configurar Python, Instalar dependências e Gerar imagens intactas)
-      
-      # SUBSTITUA a etapa antiga de Git por esta nova action:
-      - name: Commit automático (Via Action Dedicada)
+      - name: Commit e Push Automático
+        # Esta Action resolve o erro 'rejected' (fetch first)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          # Define os arquivos que você quer commitar (imagens e index.json)
+          # Arquivos que serão adicionados ao commit
           commit_files: 'imagens index.json'
-          # Define a mensagem do commit
+          # Mensagem do commit
           commit_message: 'Atualização diária de imagens'
-          # Define o nome do autor (opcional, mas bom para rastreamento)
+          # Configuração do autor do commit
           commit_author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
-          # O branch que deve ser committado
+          # Branch de destino
           branch: main
-          # A action lida com pull/rebase/push automaticamente, evitando o erro rejected!
