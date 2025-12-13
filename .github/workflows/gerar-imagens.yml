@@ -6,12 +6,13 @@ on:
   workflow_dispatch:
 
 permissions:
- contents: write
- jobs:
- gerar:
+  contents: write
+
+jobs:
+  gerar:
     runs-on: ubuntu-latest
     
-   steps:
+    steps:
       - name: Checkout do Repositório
         uses: actions/checkout@v4
         with:
@@ -29,8 +30,7 @@ permissions:
           python -m pip install pillow requests
 
       - name: Gerar Imagens
-        run: |
-          python gerar_imagens.py
+        run: python gerar_imagens.py
 
       - name: Commit e Push Automático
         uses: stefanzweifel/git-auto-commit-action@v5
