@@ -32,10 +32,16 @@ jobs:
         run: |
           python gerar_imagens.py
 
-      - name: Commit e Push Automático
+      - name: Commit e Push Automático (FINALMENTE CORRIGIDO)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_files: 'imagens index.json'
+          # 1. CORREÇÃO: Usar 'file_pattern' (substitui 'commit_files' na v5)
+          file_pattern: 'imagens index.json'
+          
           commit_message: 'Atualização diária de imagens'
           commit_author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
           branch: main
+          
+          # 2. CORREÇÃO: Adicionar opção de push forçado seguro 
+          #    Isso resolve o erro 'rejected' / 'non-fast-forward' de uma vez por todas.
+          push_options: '--force-with-lease'
