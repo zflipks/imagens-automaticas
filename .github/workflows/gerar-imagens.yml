@@ -33,24 +33,32 @@ jobs:
         run: |
           python gerar_imagens.py
 
-      - name: Commit e Push Automático (Com Autenticação Forçada)
-        run: |
-          # 1. Configurar Usuário
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+     name: Gerar imagens diárias
+# ... (Partes de 'on', 'permissions', 'jobs', 'runs-on' e primeiras etapas intactas)
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        # Mantenha esta linha para garantir que o token está sendo usado para checkout
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} 
           
-          # 2. Adicionar alterações
-          git add imagens index.json
-          
-          # 3. Commitar alterações (o '|| echo...' permite que o job continue se não houver mudanças)
-          git commit -m "Atualização diária de imagens" || echo "Nada para commitar"
-          
-          # Define a URL remota usando o token para autenticação
-          # Isso garante que o Action tem permissão para ler e escrever no seu repositório.
-          REMOTE_URL="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
-          
-          # 4. Sincronizar (Pull/Rebase) usando a URL autenticada.
-          git pull --rebase $REMOTE_URL main 
-          
-          # 5. Push (Envia o histórico sincronizado para a URL autenticada)
-          git push $REMOTE_URL main
+      # ... (Etapas de Configurar Python, Instalar dependências e Gerar imagens intactas)
+      
+      # SUBSTITUA a etapa antiga de Git por esta nova action:
+      - name: Commit automático (Via Action Dedicada)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          # Define os arquivos que você quer commitar (imagens e index.json)
+          commit_files: 'imagens index.json'
+          # Define a mensagem do commit
+          commit_message: 'Atualização diária de imagens'
+          # Define o nome do autor (opcional, mas bom para rastreamento)
+          commit_author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
+          # O branch que deve ser committado
+          branch: main
+          # A action lida com pull/rebase/push automaticamente, evitando o erro rejected!
