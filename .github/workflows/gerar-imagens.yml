@@ -7,9 +7,10 @@ on:
 
 permissions:
   contents: write
+
 jobs:
- gerar:
-   runs-on: ubuntu-latest
+  gerar:
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout do Repositório
