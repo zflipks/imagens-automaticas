@@ -26,10 +26,6 @@ jobs:
         run: |
           python gerar_imagens.py
 
-      - name: Ver arquivos modificados
-        run: |
-          git status
-
       - name: Commit automático
         run: |
          git config --global user.name "github-actions"
