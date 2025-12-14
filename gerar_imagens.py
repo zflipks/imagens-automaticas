@@ -39,42 +39,27 @@ def adicionar_texto_a_imagem(image, categoria):
     draw = ImageDraw.Draw(image)
     frase = random.choice(MENSAGENS[categoria])
     
+    y_offset = 50 
+    
     try:
         font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
-        altura_texto = FONT_SIZE + 10
+        y_offset = 100 
     except IOError:
         font = ImageFont.load_default()
-        altura_texto = 20 
-    
+        y_offset = 20 
+        
     largura_img, altura_img = image.size
-    margem = 50
     
-    linhas = []
-    linha_atual = ""
-    for palavra in frase.split():
-        linha_teste = f"{linha_atual} {palavra}".strip()
-        
-        largura_texto = draw.textlength(linha_teste, font=font)
-        
-        if largura_texto < largura_img - 2 * margem:
-            linha_atual = linha_teste
-        else:
-            linhas.append(linha_atual)
-            linha_atual = palavra
-            
-    linhas.append(linha_atual)
+    largura_texto = draw.textlength(frase, font=font)
     
-    y_start = altura_img // 2 - (len(linhas) * altura_texto) // 2
+    x = (largura_img - largura_texto) // 2
     
-    for linha in linhas:
-        largura_texto = draw.textlength(linha, font=font)
-        x = (largura_img - largura_texto) // 2
-        
-        for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
-             draw.text((x + offset[0], y_start + offset[1]), linha, font=font, fill=(0, 0, 0))
+    y = altura_img // 2 - y_offset 
 
-        draw.text((x, y_start), linha, font=font, fill=(255, 255, 255))
-        y_start += altura_texto
+    for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
+         draw.text((x + offset[0], y + offset[1]), frase, font=font, fill=(0, 0, 0))
+
+    draw.text((x, y), frase, font=font, fill=(255, 255, 255))
 
     return image
 
