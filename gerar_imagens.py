@@ -35,49 +35,76 @@ MENSAGENS = {
 FONT_PATH = "DejaVuSans-Bold.ttf" 
 FONT_SIZE = 70 
 
+def wrap_text_simple(text, limit):
+    palavras = text.split()
+    linhas = []
+    linha_atual = ""
+    for palavra in palavras:
+        if len(linha_atual) + len(palavra) + 1 <= limit:
+            linha_atual = (linha_atual + " " + palavra).strip()
+        else:
+            if linha_atual:
+                linhas.append(linha_atual)
+            linha_atual = palavra
+    if linha_atual:
+        linhas.append(linha_atual)
+    return linhas
+
 def adicionar_texto_a_imagem(image, categoria):
     
     frase = random.choice(MENSAGENS[categoria])
     largura_img, altura_img = image.size
     
     SCALE_FACTOR = 5 
+    CHAR_LIMIT = 25 
     
     try:
         font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
-        y_offset = 100 
         draw = ImageDraw.Draw(image)
-        largura_texto = draw.textlength(frase, font=font)
-        x = (largura_img - largura_texto) // 2
-        y = altura_img // 2 - y_offset
         
-        for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
-             draw.text((x + offset[0], y + offset[1]), frase, font=font, fill=(0, 0, 0))
-        draw.text((x, y), frase, font=font, fill=(255, 255, 255))
+        largura_maxima = largura_img - 100
+        linhas = wrap_text_simple(frase, CHAR_LIMIT) 
+        
+        altura_linha = FONT_SIZE + 10
+        bloco_altura = len(linhas) * altura_linha
+        y_start = altura_img // 2 - bloco_altura // 2
+        
+        for linha in linhas:
+            largura_texto = draw.textlength(linha, font=font)
+            x = (largura_img - largura_texto) // 2
+            
+            for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
+                 draw.text((x + offset[0], y_start + offset[1]), linha, font=font, fill=(0, 0, 0))
+            draw.text((x, y_start), linha, font=font, fill=(255, 255, 255))
+            y_start += altura_linha
         
     except IOError:
         
         font_default = ImageFont.load_default()
         
+        linhas = wrap_text_simple(frase, CHAR_LIMIT) 
+        num_linhas = len(linhas)
+        
         temp_w = largura_img * SCALE_FACTOR
-        temp_h = 300 * SCALE_FACTOR 
+        temp_h = (150 * num_linhas) * SCALE_FACTOR 
         temp_img = Image.new('RGB', (temp_w, temp_h), color='black') 
         temp_draw = ImageDraw.Draw(temp_img)
         
-        text_w = temp_draw.textlength(frase, font=font_default)
-        text_h = 100 
+        default_line_height = 20 * SCALE_FACTOR
         
-        x_temp = (temp_w - text_w) // 2
-        y_temp = (temp_h - text_h) // 2
+        y_temp_start = (temp_h - num_linhas * default_line_height) // 2
         
-        for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
-            temp_draw.text((x_temp + offset[0], y_temp + offset[1]), frase, font=font_default, fill=(0, 0, 0))
+        for linha in linhas:
+            text_w = temp_draw.textlength(linha, font=font_default)
+            x_temp = (temp_w - text_w) // 2
+            
+            for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
+                temp_draw.text((x_temp + offset[0], y_temp_start + offset[1]), linha, font=font_default, fill=(0, 0, 0))
 
-        temp_draw.text((x_temp, y_temp), frase, font=font_default, fill=(255, 255, 255))
+            temp_draw.text((x_temp, y_temp_start), linha, font=font_default, fill=(255, 255, 255))
+            y_temp_start += default_line_height
         
-        bbox = temp_draw.textbbox((x_temp, y_temp), frase, font=font_default)
-        
-        text_area = temp_img.crop((0, y_temp - 50, temp_w, y_temp + text_h + 50))
-        text_area_resized = text_area.resize((largura_img, text_area.height // SCALE_FACTOR))
+        text_area_resized = temp_img.resize((largura_img, temp_img.height // SCALE_FACTOR))
         
         text_y_pos = (altura_img - text_area_resized.height) // 2 
         image.paste(text_area_resized, (0, text_y_pos))
