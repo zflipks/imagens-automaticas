@@ -12,7 +12,7 @@ CATEGORIAS = {
     "boatarde": "good afternoon aesthetic",
     "boanoite": "good night aesthetic"
 }
-IMAGENS_POR_CATEGORIA =10
+IMAGENS_POR_CATEGORIA = 10
 
 MENSAGENS = {
     "bomdia": [
@@ -32,7 +32,7 @@ MENSAGENS = {
     ]
 }
 
-FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" 
+FONT_PATH = "DejaVuSans-Bold.ttf" 
 FONT_SIZE = 50 
 
 def adicionar_texto_a_imagem(image, categoria):
@@ -41,9 +41,10 @@ def adicionar_texto_a_imagem(image, categoria):
     
     try:
         font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
+        altura_texto = FONT_SIZE + 10
     except IOError:
-        print("Aviso: Fonte DejaVu não encontrada. Usando fonte padrão.")
         font = ImageFont.load_default()
+        altura_texto = 20 
     
     largura_img, altura_img = image.size
     margem = 50
@@ -52,26 +53,28 @@ def adicionar_texto_a_imagem(image, categoria):
     linha_atual = ""
     for palavra in frase.split():
         linha_teste = f"{linha_atual} {palavra}".strip()
-        largura_texto, altura_texto = draw.textsize(linha_teste, font=font)
+        
+        largura_texto = draw.textlength(linha_teste, font=font)
         
         if largura_texto < largura_img - 2 * margem:
             linha_atual = linha_teste
         else:
             linhas.append(linha_atual)
             linha_atual = palavra
+            
     linhas.append(linha_atual)
     
     y_start = altura_img // 2 - (len(linhas) * altura_texto) // 2
     
     for linha in linhas:
-        largura_texto, altura_texto = draw.textsize(linha, font=font)
+        largura_texto = draw.textlength(linha, font=font)
         x = (largura_img - largura_texto) // 2
         
-        draw.text((x-2, y_start-2), linha, font=font, fill=(0, 0, 0))
-        draw.text((x+2, y_start+2), linha, font=font, fill=(0, 0, 0))
-        
+        for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
+             draw.text((x + offset[0], y_start + offset[1]), linha, font=font, fill=(0, 0, 0))
+
         draw.text((x, y_start), linha, font=font, fill=(255, 255, 255))
-        y_start += altura_texto + 10 # Pula para a próxima linha
+        y_start += altura_texto
 
     return image
 
@@ -97,7 +100,7 @@ def baixar_imagem(categoria, busca, indice):
         os.makedirs(pasta, exist_ok=True) 
 
         caminho = os.path.join(pasta, f"{categoria}_{indice}.jpg")
-        image_editada.save(caminho, "JPEG", quality=90) # Salva a imagem editada
+        image_editada.save(caminho, "JPEG", quality=90) 
 
         return caminho.replace("\\", "/")
 
