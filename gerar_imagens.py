@@ -33,33 +33,54 @@ MENSAGENS = {
 }
 
 FONT_PATH = "DejaVuSans-Bold.ttf" 
-FONT_SIZE = 50 
+FONT_SIZE = 70 
 
 def adicionar_texto_a_imagem(image, categoria):
-    draw = ImageDraw.Draw(image)
-    frase = random.choice(MENSAGENS[categoria])
     
-    y_offset = 50 
+    frase = random.choice(MENSAGENS[categoria])
+    largura_img, altura_img = image.size
+    
+    SCALE_FACTOR = 5 
     
     try:
         font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
         y_offset = 100 
-    except IOError:
-        font = ImageFont.load_default()
-        y_offset = 20 
+        draw = ImageDraw.Draw(image)
+        largura_texto = draw.textlength(frase, font=font)
+        x = (largura_img - largura_texto) // 2
+        y = altura_img // 2 - y_offset
         
-    largura_img, altura_img = image.size
-    
-    largura_texto = draw.textlength(frase, font=font)
-    
-    x = (largura_img - largura_texto) // 2
-    
-    y = altura_img // 2 - y_offset 
+        for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
+             draw.text((x + offset[0], y + offset[1]), frase, font=font, fill=(0, 0, 0))
+        draw.text((x, y), frase, font=font, fill=(255, 255, 255))
+        
+    except IOError:
+        
+        font_default = ImageFont.load_default()
+        
+        temp_w = largura_img * SCALE_FACTOR
+        temp_h = 300 * SCALE_FACTOR 
+        temp_img = Image.new('RGB', (temp_w, temp_h), color='black') 
+        temp_draw = ImageDraw.Draw(temp_img)
+        
+        text_w = temp_draw.textlength(frase, font=font_default)
+        text_h = 100 
+        
+        x_temp = (temp_w - text_w) // 2
+        y_temp = (temp_h - text_h) // 2
+        
+        for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
+            temp_draw.text((x_temp + offset[0], y_temp + offset[1]), frase, font=font_default, fill=(0, 0, 0))
 
-    for offset in [(-2, -2), (2, 2), (-2, 2), (2, -2)]:
-         draw.text((x + offset[0], y + offset[1]), frase, font=font, fill=(0, 0, 0))
-
-    draw.text((x, y), frase, font=font, fill=(255, 255, 255))
+        temp_draw.text((x_temp, y_temp), frase, font=font_default, fill=(255, 255, 255))
+        
+        bbox = temp_draw.textbbox((x_temp, y_temp), frase, font=font_default)
+        
+        text_area = temp_img.crop((0, y_temp - 50, temp_w, y_temp + text_h + 50))
+        text_area_resized = text_area.resize((largura_img, text_area.height // SCALE_FACTOR))
+        
+        text_y_pos = (altura_img - text_area_resized.height) // 2 
+        image.paste(text_area_resized, (0, text_y_pos))
 
     return image
 
