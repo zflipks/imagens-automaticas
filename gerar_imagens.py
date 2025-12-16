@@ -117,64 +117,61 @@ MENSAGENS = {
     ]
 }
 
-# ================= TEXTO NA IMAGEM =================
+# ================= TEXTO =================
 
 FONT_PATH = "fonts/Pacifico-Regular.ttf"
 FONT_SIZE = 70
 
-def wrap_text_simple(text, limit):
+def wrap_text(text, limit=25):
     palavras = text.split()
-    linhas = []
-    linha_atual = ""
+    linhas, atual = [], ""
 
-    for palavra in palavras:
-        if len(linha_atual) + len(palavra) + 1 <= limit:
-            linha_atual = (linha_atual + " " + palavra).strip()
+    for p in palavras:
+        if len(atual) + len(p) + 1 <= limit:
+            atual = (atual + " " + p).strip()
         else:
-            linhas.append(linha_atual)
-            linha_atual = palavra
+            linhas.append(atual)
+            atual = p
 
-    if linha_atual:
-        linhas.append(linha_atual)
+    if atual:
+        linhas.append(atual)
 
     return linhas
 
-
-def adicionar_texto_a_imagem(image, frase):
-    largura_img, altura_img = image.size
-    CHAR_LIMIT = 25
-
-    font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
+def adicionar_texto(image, frase):
+    w, h = image.size
     draw = ImageDraw.Draw(image)
+    font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
 
-    linhas = wrap_text_simple(frase, CHAR_LIMIT)
-    altura_linha = FONT_SIZE + 10
-    bloco_altura = len(linhas) * altura_linha
-    y = altura_img // 2 - bloco_altura // 2
+    linhas = wrap_text(frase)
+    altura = FONT_SIZE + 10
+    y = h // 2 - (len(linhas) * altura) // 2
 
     for linha in linhas:
-        largura_texto = draw.textlength(linha, font=font)
-        x = (largura_img - largura_texto) // 2
+        largura = draw.textlength(linha, font=font)
+        x = (w - largura) // 2
 
         for ox, oy in [(-2,-2),(2,2),(-2,2),(2,-2)]:
             draw.text((x+ox, y+oy), linha, font=font, fill=(0,0,0))
 
         draw.text((x, y), linha, font=font, fill=(255,255,255))
-        y += altura_linha
+        y += altura
 
     return image
-
 
 # ================= DOWNLOAD =================
 
 def baixar_imagem(categoria, indice, frase):
     url = f"https://picsum.photos/1080/1080?random={random.randint(1,999999)}"
-    print(f"Baixando {categoria} {indice}")
 
-    response = requests.get(url, timeout=20)
-    image = Image.open(BytesIO(response.content)).convert("RGB")
+    try:
+        response = requests.get(url, timeout=20)
+        image = Image.open(BytesIO(response.content)).convert("RGB")
+    except Exception:
+        print(f"Falha ao baixar imagem {categoria}_{indice}, pulando...")
+        return None
 
-    image = adicionar_texto_a_imagem(image, frase)
+    image = adicionar_texto(image, frase)
 
     pasta = os.path.join(BASE_DIR, categoria)
     os.makedirs(pasta, exist_ok=True)
@@ -183,7 +180,6 @@ def baixar_imagem(categoria, indice, frase):
     image.save(caminho, "JPEG", quality=90)
 
     return caminho.replace("\\", "/")
-
 
 # ================= GERAR =================
 
@@ -200,17 +196,19 @@ def gerar_imagens():
     for categoria in CATEGORIAS:
         frases = random.sample(MENSAGENS[categoria], IMAGENS_POR_CATEGORIA)
 
-        for i in range(IMAGENS_POR_CATEGORIA):
-            caminho = baixar_imagem(categoria, i+1, frases[i])
-            index[categoria].append(
-                f"https://raw.githubusercontent.com/zflipks/imagens-automaticas/main/{caminho}"
-            )
+        i = 1
+        while len(index[categoria]) < IMAGENS_POR_CATEGORIA:
+            caminho = baixar_imagem(categoria, i, frases[len(index[categoria])])
+            if caminho:
+                index[categoria].append(
+                    f"https://raw.githubusercontent.com/zflipks/imagens-automaticas/main/{caminho}"
+                )
+            i += 1
 
     with open("index.json", "w", encoding="utf-8") as f:
         json.dump(index, f, indent=2, ensure_ascii=False)
 
     print("index.json gerado com sucesso!")
-
 
 if __name__ == "__main__":
     gerar_imagens()
