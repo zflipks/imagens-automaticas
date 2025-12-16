@@ -119,8 +119,8 @@ MENSAGENS = {
 
 # ================= TEXTO NA IMAGEM =================
 
-FONT_PATH = "DejaVuSans-Bold.ttf"
-FONT_SIZE = 70
+FONT_PATH = "Pacifico-Regular.ttf"
+FONT_SIZE = 64
 
 def wrap_text_simple(text, limit):
     palavras = text.split()
