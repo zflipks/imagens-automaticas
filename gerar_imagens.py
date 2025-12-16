@@ -119,7 +119,7 @@ MENSAGENS = {
 
 # ================= TEXTO NA IMAGEM =================
 
-FONT_PATH = "Pacifico-Regular.ttf"
+FONT_PATH = "fonts/Pacifico-Regular.ttf"
 FONT_SIZE = 64
 
 def wrap_text_simple(text, limit):
