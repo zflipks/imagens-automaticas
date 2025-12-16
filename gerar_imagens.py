@@ -120,7 +120,7 @@ MENSAGENS = {
 # ================= TEXTO NA IMAGEM =================
 
 FONT_PATH = "fonts/Pacifico-Regular.ttf"
-FONT_SIZE = 64
+FONT_SIZE = 70
 
 def wrap_text_simple(text, limit):
     palavras = text.split()
