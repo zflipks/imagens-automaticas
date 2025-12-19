@@ -51,7 +51,7 @@ MENSAGENS = {
     "Bom dia 🌿 Que a fé seja maior que o medo.",
     "Bom dia ☀️ Hoje será um dia abençoado, Deus está com você."
     ],
-    "boatarde": [
+    "boatarde":[
     "Boa tarde ☀️ Que Deus renove suas forças agora, acalme seu coração e te dê sabedoria para seguir até o fim do dia.",
     "Boa tarde 🙏 Mesmo que o dia esteja pesado, confie: Deus continua cuidando de tudo nos mínimos detalhes.",
     "Boa tarde 🌿 Que a paz de Deus invada sua mente, alivie suas preocupações e fortaleça sua fé.",
@@ -83,7 +83,7 @@ MENSAGENS = {
     "Boa tarde 🙏 Deus te sustenta.",
     "Boa tarde 🌼 Você não está sozinho, Deus está com você."
     ]
-    "boanoite": [
+    "boanoite":[
     "Boa noite 🌙 Entregue tudo a Deus, acalme o coração e descanse sabendo que Ele cuida de você.",
     "Boa noite 🙏 Que Deus leve embora todo cansaço, toda preocupação e te conceda uma noite de paz.",
     "Boa noite 🌟 Descanse em Deus, amanhã Ele continuará cuidando de tudo.",
