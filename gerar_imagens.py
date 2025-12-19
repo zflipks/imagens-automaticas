@@ -50,7 +50,6 @@ MENSAGENS = {
     "Bom dia 🙏 Deus vai na sua frente abrindo caminhos.",
     "Bom dia 🌿 Que a fé seja maior que o medo.",
     "Bom dia ☀️ Hoje será um dia abençoado, Deus está com você."
-)
     ],
     "boatarde": [
         "Boa tarde! Que o resto do dia seja leve.",
