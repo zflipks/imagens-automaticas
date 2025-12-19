@@ -82,7 +82,7 @@ MENSAGENS = {
     "Boa tarde ☀️ Que a paz permaneça com você.",
     "Boa tarde 🙏 Deus te sustenta.",
     "Boa tarde 🌼 Você não está sozinho, Deus está com você."
-    ]
+    ],
     "boanoite":[
     "Boa noite 🌙 Entregue tudo a Deus, acalme o coração e descanse sabendo que Ele cuida de você.",
     "Boa noite 🙏 Que Deus leve embora todo cansaço, toda preocupação e te conceda uma noite de paz.",
