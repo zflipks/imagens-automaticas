@@ -154,11 +154,13 @@ def baixar_imagem(categoria, indice, frase):
 # ================= GERAR =================
 
 def gerar_imagens():
+    print(">>>GERADOR INICIADO<<<")
     os.makedirs(BASE_DIR, exist_ok=True)
 
     index = {"generated_at": datetime.utcnow().isoformat() + "Z"}
 
     for categoria in CATEGORIAS:
+        print("Gerando categoria:",categoria)
         index[categoria] = []
         frases = random.sample(MENSAGENS[categoria], IMAGENS_POR_CATEGORIA)
 
