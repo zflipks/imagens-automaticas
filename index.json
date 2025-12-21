@@ -38,6 +38,5 @@
   ],
   "anonovo": [],
   "aniversario": []
+  print("idex final:", index.keys()) 
 }
-
-print("idex final:", index.keys())
