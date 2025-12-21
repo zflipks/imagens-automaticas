@@ -176,5 +176,5 @@ def gerar_imagens():
 
     print("index.json gerado com sucesso!")
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     gerar_imagens()
