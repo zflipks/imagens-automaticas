@@ -1,37 +1,580 @@
 {
-  "bomdia": [
-    "Que seu dia comece com fé",
-    "Hoje é um novo começo",
-    "Acorde com gratidão",
-    "Vai dar tudo certo",
-    "Deus está no controle"
-  ],
-  "boatarde": [
-    "Que a tarde seja leve",
-    "Respire e continue",
-    "Ainda dá tempo",
-    "Confie no processo",
-    "Siga firme"
-  ],
-  "boanoite": [
-    "Descanse em paz",
-    "Amanhã será melhor",
-    "Durma com Deus",
-    "O dia foi vencido",
-    "Tenha uma boa noite"
-  ],
-  "anonovo": [
-    "Feliz Ano Novo 🎆 Que Deus abençoe cada passo do seu novo ano.",
-    "Que este novo ano venha com fé, paz e muitas bênçãos.",
-    "Novo ano, novos começos nas mãos de Deus.",
-    "Que a presença de Deus guie você durante todo este ano.",
-    "Comece o ano confiando: Deus já está no controle."
-  ],
-  "aniversario": [
-    "Feliz Aniversário 🎉 Que Deus abençoe sua vida hoje e sempre.",
-    "Que seu novo ano seja cheio de paz, saúde e fé.",
-    "Parabéns 🎂 Que Deus realize lindos propósitos na sua vida.",
-    "Mais um ano de vida, mais motivos para agradecer a Deus.",
-    "Que o amor de Deus se renove sobre você neste novo ciclo."
-  ]
+  "bomdia": {
+    "base": [
+      "Que seu dia comece com fé, serenidade e motivos para agradecer.",
+      "Hoje é um novo começo. Caminhe com esperança no coração.",
+      "Que Deus ilumine suas escolhas e abençoe cada passo deste dia.",
+      "Acorde com gratidão: há sempre uma nova oportunidade esperando por você.",
+      "Que a paz encontre morada no seu coração nesta manhã.",
+      "Comece devagar, respire fundo e confie no que está por vir.",
+      "Que a sua manhã seja leve e o seu dia seja cheio de boas notícias.",
+      "Deus está no controle. Siga em frente com fé e coragem.",
+      "Um novo dia chegou para renovar seus sonhos e suas forças.",
+      "Que nunca faltem luz no caminho e esperança no coração.",
+      "Receba esta manhã como um presente e faça o melhor com ela.",
+      "Que o sol de hoje aqueça seus sonhos e renove sua disposição.",
+      "Comece o dia acreditando que coisas boas encontrarão você.",
+      "Que sua jornada de hoje seja guiada por sabedoria e tranquilidade.",
+      "Uma manhã de paz pode transformar todo o restante do dia.",
+      "Abra as janelas, renove os pensamentos e permita-se recomeçar.",
+      "Que a fé seja maior que qualquer preocupação nesta manhã.",
+      "Hoje pode ser o início de algo bonito. Caminhe com confiança.",
+      "Leve gratidão no coração e gentileza em cada atitude.",
+      "Que esta manhã traga clareza, energia e muitos bons encontros."
+    ],
+    "combinations": {
+      "starts": [
+        "Que esta manhã desperte em você",
+        "Que o amanhecer traga",
+        "Ao começar este novo dia, escolha",
+        "Que a luz desta manhã renove",
+        "Hoje, permita que floresçam",
+        "Que seu primeiro pensamento seja de",
+        "Receba o dia com",
+        "Que cada instante desta manhã carregue",
+        "Antes de seguir, guarde no coração",
+        "Que o café e o nascer do sol tragam",
+        "Nesta manhã, caminhe com",
+        "Que o novo dia encontre você com"
+      ],
+      "endings": [
+        "paz, coragem e vontade de realizar.",
+        "gratidão pelas pequenas alegrias da vida.",
+        "esperança para transformar planos em caminhos.",
+        "serenidade para acolher tudo o que vier.",
+        "fé para avançar mesmo sem enxergar toda a estrada.",
+        "leveza, bons encontros e notícias felizes.",
+        "energia para cuidar do que realmente importa.",
+        "sabedoria para fazer escolhas bonitas.",
+        "confiança para recomeçar quantas vezes for preciso.",
+        "gentileza para oferecer e receber ao longo do caminho.",
+        "alegria simples e motivos sinceros para sorrir.",
+        "a certeza de que coisas boas também estão a caminho."
+      ]
+    }
+  },
+  "boatarde": {
+    "base": [
+      "Que a sua tarde seja tranquila, produtiva e cheia de boas surpresas.",
+      "Ainda há tempo para fazer deste dia algo muito especial.",
+      "Respire, reorganize os pensamentos e continue com confiança.",
+      "Que Deus renove suas forças para a segunda metade do dia.",
+      "Uma tarde serena começa com um coração em paz.",
+      "Siga firme: cada pequeno passo também aproxima você dos seus sonhos.",
+      "Que a luz desta tarde aqueça o coração e renove a esperança.",
+      "Confie no processo. Coisas bonitas também levam tempo.",
+      "Que a tarde traga calma para a mente e alegria para a alma.",
+      "Faça uma pausa, agradeça pelo caminho e continue com leveza.",
+      "Que sua tarde tenha ritmo tranquilo e resultados que tragam orgulho.",
+      "Mesmo depois de um dia difícil, ainda existe espaço para algo bom.",
+      "Que a serenidade acompanhe suas escolhas durante toda a tarde.",
+      "Continue com paciência: você está mais perto do que imagina.",
+      "Que cada hora desta tarde seja vivida com presença e gratidão.",
+      "Uma pausa gentil também faz parte de um dia produtivo.",
+      "Que o restante do dia surpreenda você de um jeito bonito.",
+      "A tarde chegou para lembrar que sempre há tempo de melhorar o caminho.",
+      "Siga com calma, fé e a certeza de que seu esforço vale a pena.",
+      "Que a luz dourada desta tarde ilumine novas possibilidades."
+    ],
+    "combinations": {
+      "starts": [
+        "Que esta tarde ofereça",
+        "Para o restante do dia, desejo",
+        "Que a luz dourada traga",
+        "Nesta tarde, preserve",
+        "Que cada hora daqui em diante tenha",
+        "Faça uma pausa e receba",
+        "Que sua caminhada nesta tarde encontre",
+        "Ainda hoje, permita-se viver",
+        "Que o sol da tarde renove",
+        "Continue o dia com",
+        "Que esta tarde seja feita de",
+        "Para sua tarde, guarde"
+      ],
+      "endings": [
+        "calma para a mente e ânimo para continuar.",
+        "bons encontros, trabalho leve e coração tranquilo.",
+        "paciência para o processo e alegria pelos avanços.",
+        "clareza nas escolhas e confiança nos próximos passos.",
+        "momentos simples que façam o dia valer a pena.",
+        "esperança renovada e motivos sinceros para agradecer.",
+        "equilíbrio entre realizar, respirar e aproveitar.",
+        "energia serena para concluir o que importa.",
+        "gentileza nas palavras e paz nas decisões.",
+        "surpresas felizes e notícias que aqueçam o coração.",
+        "sabedoria para desacelerar sem desistir.",
+        "uma luz especial sobre seus planos e sonhos."
+      ]
+    }
+  },
+  "boanoite": {
+    "base": [
+      "Que a sua noite seja tranquila e o seu sono verdadeiramente reparador.",
+      "Descanse em paz. Você fez o melhor que podia hoje.",
+      "Deixe o silêncio da noite organizar aquilo que o dia não resolveu.",
+      "O dia termina, mas a esperança se renova para um novo amanhã.",
+      "Boa noite. Que nunca faltem paz, proteção e sonhos bonitos.",
+      "Acalme os pensamentos e guarde no coração somente o que fez bem.",
+      "Que Deus cuide de você, da sua casa e de quem você ama.",
+      "Entregue as preocupações, agradeça pelo dia e permita-se descansar.",
+      "Que a lua ilumine seus sonhos e a paz abrace seu coração.",
+      "Amanhã será uma nova oportunidade. Por hoje, apenas descanse.",
+      "Que esta noite leve embora o cansaço e devolva serenidade.",
+      "Feche os olhos com gratidão por tudo o que foi possível viver.",
+      "Que o silêncio seja companhia e a esperança seja seu último pensamento.",
+      "Uma noite tranquila prepara o coração para um novo começo.",
+      "Descanse: nem todas as respostas precisam chegar hoje.",
+      "Que seus sonhos sejam leves e seu despertar cheio de disposição.",
+      "A noite chegou para acolher sua alma e renovar suas forças.",
+      "Deus conhece suas lutas. Durma em paz e confie no amanhã.",
+      "Que a proteção divina acompanhe cada instante do seu descanso.",
+      "Boa noite. Solte o peso do dia e abrace a calma."
+    ],
+    "combinations": {
+      "starts": [
+        "Que esta noite envolva você com",
+        "Antes de dormir, entregue ao coração",
+        "Que o céu estrelado inspire",
+        "Ao encerrar o dia, escolha",
+        "Que o silêncio desta noite traga",
+        "Descanse e permita que cheguem",
+        "Que a lua acompanhe",
+        "Para esta noite, desejo",
+        "Que cada estrela anuncie",
+        "Deixe para amanhã o que pesa e receba",
+        "Que seu lar seja preenchido por",
+        "Feche os olhos confiando em"
+      ],
+      "endings": [
+        "paz profunda e sonhos cheios de esperança.",
+        "serenidade para descansar e força para recomeçar.",
+        "proteção, aconchego e um sono reparador.",
+        "gratidão pelo dia e confiança no amanhã.",
+        "calma para os pensamentos e leveza para a alma.",
+        "bons sonhos e um despertar cheio de energia.",
+        "silêncio acolhedor e a certeza de que tudo ficará bem.",
+        "conforto para o coração e descanso para o corpo.",
+        "fé renovada e novas possibilidades ao amanhecer.",
+        "tranquilidade para soltar tudo o que não pode controlar.",
+        "carinho, proteção e lembranças que façam sorrir.",
+        "a promessa de um novo dia iluminado."
+      ]
+    }
+  },
+  "aniversario": {
+    "base": [
+      "Parabéns pelo seu dia! Que a alegria de hoje acompanhe você o ano inteiro.",
+      "Celebre a vida, as conquistas e todas as possibilidades deste novo ciclo.",
+      "Hoje o dia é todo seu. Celebre cada lembrança e cada sonho que ainda virá.",
+      "Que nunca faltem coragem para sonhar e pessoas queridas para celebrar.",
+      "Desejo um ciclo cheio de encontros sinceros e conquistas inesquecíveis.",
+      "Feliz aniversário! Que este novo ciclo seja repleto de saúde, paz e realizações.",
+      "Hoje celebramos sua vida e tudo de bonito que você representa.",
+      "Que este aniversário marque o começo de uma fase leve e muito feliz.",
+      "Feliz vida! Que cada novo dia traga uma razão especial para agradecer.",
+      "Mais um ano de histórias, aprendizados e bênçãos para celebrar.",
+      "Que seu dia seja doce, colorido e cercado pelas pessoas que ama.",
+      "Parabéns! Que seus sonhos cresçam junto com sua coragem de realizá-los.",
+      "Que a felicidade de hoje se multiplique em todos os dias do novo ciclo.",
+      "Celebre cada passo da sua história e tudo de belo que ainda está por vir.",
+      "Que este novo ano de vida traga saúde, amor e oportunidades especiais.",
+      "Hoje é dia de agradecer por sua presença e brindar à sua caminhada.",
+      "Que os melhores presentes sejam afeto, paz e memórias felizes.",
+      "Feliz aniversário! Continue espalhando sua luz por onde passar.",
+      "Que seu novo ciclo seja maior que seus medos e mais bonito que seus planos.",
+      "Parabéns por mais um capítulo de uma história única e preciosa."
+    ],
+    "combinations": {
+      "starts": [
+        "Que este novo ciclo seja repleto de",
+        "No seu aniversário, desejo",
+        "Que a celebração de hoje inaugure",
+        "Para o seu novo ano de vida, guarde",
+        "Que cada vela acesa represente",
+        "Hoje, celebre com o coração cheio de",
+        "Que a vida presenteie você com",
+        "Neste dia especial, receba",
+        "Que seus próximos doze meses tragam",
+        "Ao iniciar mais um capítulo, leve",
+        "Que este aniversário multiplique",
+        "Para você, que torna o mundo mais bonito, desejo"
+      ],
+      "endings": [
+        "saúde, amor e sonhos realizados.",
+        "amizades sinceras e momentos inesquecíveis.",
+        "coragem para novos projetos e alegria para celebrá-los.",
+        "paz no coração e motivos diários para sorrir.",
+        "conquistas que façam todo esforço valer a pena.",
+        "abraços apertados, boas surpresas e muito carinho.",
+        "sabedoria, prosperidade e caminhos iluminados.",
+        "leveza para viver e entusiasmo para recomeçar.",
+        "memórias felizes ao lado de quem realmente importa.",
+        "esperança renovada e oportunidades especiais.",
+        "afeto, gratidão e uma felicidade que permaneça.",
+        "um ano inteiro de bênçãos e belas descobertas."
+      ]
+    }
+  },
+  "anonovo": {
+    "base": [
+      "Que este seja um ano de encontros felizes, sonhos realizados e muita paz.",
+      "Um brinde às novas histórias, aprendizados e conquistas que estão por vir.",
+      "Desejo coragem para começar, sabedoria para continuar e alegria para celebrar.",
+      "Feliz Ano Novo! Que a paz, a saúde e a esperança acompanhem cada novo dia.",
+      "Um novo capítulo começa. Escreva-o com coragem, gratidão e amor.",
+      "Que cada amanhecer do novo ano renove sua confiança na vida.",
+      "Abra espaço para novas experiências e pessoas que tragam luz.",
+      "Comece o novo ano com gratidão pelo caminho e esperança pelo destino.",
+      "Que não faltem determinação para os desafios e gratidão pelas conquistas.",
+      "Que este ano recompense seus esforços com crescimento e felicidade.",
+      "Que o novo ano chegue trazendo paz para a alma e força para os sonhos.",
+      "Deixe para trás o que pesa e leve consigo tudo o que fez você crescer.",
+      "Que cada mês seja uma página bonita na história que você vai construir.",
+      "Feliz Ano Novo! Que a esperança brilhe mais forte que qualquer incerteza.",
+      "Um novo ciclo começa com infinitas possibilidades para florescer.",
+      "Que o próximo ano seja gentil, próspero e cheio de encontros especiais.",
+      "Brinde ao que passou, acolha o presente e confie no que virá.",
+      "Que o novo ano transforme planos sinceros em belas realizações.",
+      "Renove a fé, abrace novos caminhos e celebre cada pequena vitória.",
+      "Que saúde, amor e serenidade acompanhem todos os seus dias."
+    ],
+    "combinations": {
+      "starts": [
+        "Que o novo ano abra caminhos para",
+        "Neste ciclo que começa, escolha",
+        "Que cada mês traga",
+        "Ao brindar a chegada do novo ano, celebre",
+        "Que os próximos doze meses sejam feitos de",
+        "Deixe o passado ensinar e permita ao futuro trazer",
+        "Que a esperança deste recomeço inspire",
+        "Para o ano que chega, desejo",
+        "Que cada novo amanhecer ofereça",
+        "Comece este capítulo levando consigo",
+        "Que o brilho da virada ilumine",
+        "Neste Ano Novo, transforme seus desejos em"
+      ],
+      "endings": [
+        "saúde, serenidade e grandes realizações.",
+        "coragem para mudar e sabedoria para permanecer.",
+        "oportunidades sinceras e encontros felizes.",
+        "prosperidade construída com propósito e gratidão.",
+        "amor, união e momentos que mereçam ser lembrados.",
+        "novos sonhos e força para torná-los realidade.",
+        "leveza para seguir e esperança para recomeçar.",
+        "crescimento, aprendizado e muitas boas notícias.",
+        "paz nas escolhas e confiança em cada passo.",
+        "alegria para celebrar as pequenas e grandes vitórias.",
+        "caminhos iluminados e projetos cheios de sentido.",
+        "um futuro mais gentil, próspero e feliz."
+      ]
+    }
+  },
+  "fe": {
+    "combinations": {
+      "starts": [
+        "Que Deus renove em você",
+        "Que a fé coloque em seu coração",
+        "Que a presença de Deus traga",
+        "Em cada oração, encontre",
+        "Que a luz divina ofereça",
+        "Confie em Deus e receba",
+        "Que suas escolhas sejam guiadas por",
+        "Para hoje, guarde no coração",
+        "Que o céu derrame sobre sua vida",
+        "Mesmo nos dias difíceis, preserve"
+      ],
+      "endings": [
+        "paz para esperar e coragem para continuar.",
+        "esperança serena e confiança no caminho.",
+        "proteção, sabedoria e um coração tranquilo.",
+        "força para vencer e gratidão para reconhecer as bênçãos.",
+        "consolo para a alma e luz para os próximos passos.",
+        "a certeza de que nenhuma oração sincera é esquecida.",
+        "fé para atravessar o que ainda não pode compreender.",
+        "amor, misericórdia e motivos para seguir em frente.",
+        "calma para o presente e esperança para o futuro.",
+        "a bênção de sentir que você nunca caminha sozinho."
+      ]
+    }
+  },
+  "gratidao": {
+    "combinations": {
+      "starts": [
+        "Hoje, agradeça por",
+        "Que a gratidão revele",
+        "Ao olhar ao redor, reconheça",
+        "Guarde no coração a alegria de",
+        "Que nunca passe despercebido",
+        "A vida fica mais bonita quando valorizamos",
+        "Respire fundo e agradeça por",
+        "Que seu dia seja iluminado pela gratidão por",
+        "Mesmo nas coisas simples, celebre",
+        "Faça da gratidão um jeito de enxergar"
+      ],
+      "endings": [
+        "cada pequeno cuidado que tornou o caminho mais leve.",
+        "as pessoas que permanecem ao seu lado.",
+        "as oportunidades escondidas em cada novo começo.",
+        "a saúde, a paz e os afetos que sustentam a vida.",
+        "os aprendizados que fizeram você crescer.",
+        "os encontros sinceros e as lembranças felizes.",
+        "a beleza presente nos momentos mais simples.",
+        "tudo o que chegou no tempo certo.",
+        "a força que apareceu quando você mais precisou.",
+        "as bênçãos de hoje e a esperança de amanhã."
+      ]
+    }
+  },
+  "amizade": {
+    "combinations": {
+      "starts": [
+        "Uma amizade verdadeira oferece",
+        "Que seus amigos encontrem em você",
+        "Celebre quem compartilha com você",
+        "A vida ganha mais cor quando temos",
+        "Que nunca faltem por perto",
+        "Amizade bonita é aquela que cultiva",
+        "Hoje, agradeça pelos amigos que trazem",
+        "Entre risadas e conversas, preserve",
+        "Que a distância nunca diminua",
+        "Envie carinho a quem sempre oferece"
+      ],
+      "endings": [
+        "acolhimento nos dias difíceis e alegria nos dias bons.",
+        "confiança, respeito e presença sincera.",
+        "risadas leves e memórias inesquecíveis.",
+        "abraços que confortam sem precisar de explicação.",
+        "companhia verdadeira e palavras que fazem bem.",
+        "liberdade para ser quem somos de verdade.",
+        "apoio para recomeçar e motivos para comemorar.",
+        "gestos simples que demonstram afeto profundo.",
+        "a união construída com lealdade e cuidado.",
+        "um lugar seguro para dividir sonhos e esperanças."
+      ]
+    }
+  },
+  "amor": {
+    "combinations": {
+      "starts": [
+        "Que o amor encontre espaço para",
+        "Amar é escolher todos os dias",
+        "Que seu coração seja cercado por",
+        "Celebre o amor que transforma",
+        "Que nunca faltem na sua vida",
+        "O amor verdadeiro floresce quando existe",
+        "Hoje, permita que o carinho",
+        "Que cada gesto de afeto possa",
+        "Guarde perto de você quem oferece",
+        "Que a vida presenteie seu coração com"
+      ],
+      "endings": [
+        "crescer com respeito, cuidado e sinceridade.",
+        "abraços demorados e palavras que acolhem.",
+        "companheirismo para os dias simples e os grandes sonhos.",
+        "ternura nos detalhes e paz na convivência.",
+        "coragem para demonstrar tudo o que sente.",
+        "confiança para construir uma história bonita.",
+        "presença verdadeira e lembranças cheias de carinho.",
+        "leveza para amar sem perder a própria essência.",
+        "encontros que aquecem a alma e iluminam o caminho.",
+        "um sentimento recíproco, gentil e duradouro."
+      ]
+    }
+  },
+  "motivacao": {
+    "combinations": {
+      "starts": [
+        "Continue avançando com",
+        "Que cada desafio desperte",
+        "Acredite no caminho e preserve",
+        "Hoje é um bom dia para escolher",
+        "Que sua coragem seja maior que",
+        "Dê mais um passo levando",
+        "Toda conquista começa quando existe",
+        "Transforme seus planos em movimento com",
+        "Mesmo devagar, siga com",
+        "Olhe para frente e mantenha"
+      ],
+      "endings": [
+        "disciplina, esperança e confiança em si mesmo.",
+        "força para insistir e sabedoria para ajustar a rota.",
+        "foco no que importa e paciência com o processo.",
+        "coragem para começar antes de se sentir totalmente pronto.",
+        "a certeza de que pequenos avanços também contam.",
+        "determinação para superar os limites de ontem.",
+        "resiliência para aprender com cada tentativa.",
+        "clareza para escolher e energia para realizar.",
+        "confiança no seu potencial e respeito pelo seu tempo.",
+        "vontade de construir a vida que você deseja."
+      ]
+    }
+  },
+  "felizsemana": {
+    "combinations": {
+      "starts": [
+        "Que esta nova semana traga",
+        "Comece a semana cultivando",
+        "Para os próximos dias, desejo",
+        "Que cada manhã desta semana ofereça",
+        "Abra a semana com",
+        "Que seus planos encontrem",
+        "Nesta semana, preserve",
+        "Que os novos dias sejam guiados por",
+        "Receba esta semana com",
+        "Que de segunda a domingo não faltem"
+      ],
+      "endings": [
+        "boas oportunidades e disposição para aproveitá-las.",
+        "paz nas escolhas e leveza na rotina.",
+        "energia para realizar e sabedoria para descansar.",
+        "encontros felizes e notícias que aqueçam o coração.",
+        "coragem para os desafios e gratidão pelas conquistas.",
+        "organização, foco e momentos de alegria.",
+        "esperança renovada a cada novo amanhecer.",
+        "gentileza nas palavras e harmonia nos caminhos.",
+        "saúde, proteção e motivos sinceros para sorrir.",
+        "uma sequência de dias produtivos e abençoados."
+      ]
+    }
+  },
+  "bomfimdesemana": {
+    "combinations": {
+      "starts": [
+        "Que seu fim de semana seja feito de",
+        "Depois de tantos compromissos, permita-se viver",
+        "Para estes dias de descanso, desejo",
+        "Que o fim de semana traga",
+        "Desacelere e aproveite",
+        "Que cada momento destes dias tenha",
+        "Reserve um tempo para",
+        "Que sábado e domingo ofereçam",
+        "Aproveite o fim de semana com",
+        "Que a pausa merecida renove"
+      ],
+      "endings": [
+        "descanso verdadeiro e momentos ao lado de quem você ama.",
+        "paisagens bonitas, conversas leves e muitas risadas.",
+        "tempo para respirar e energia para recomeçar.",
+        "aventuras simples e lembranças felizes.",
+        "calma, boa companhia e liberdade sem pressa.",
+        "carinho, natureza e pequenas alegrias.",
+        "um café tranquilo e planos que façam bem.",
+        "paz para a mente e conforto para o coração.",
+        "viagens, passeios ou o aconchego gostoso de casa.",
+        "suas forças e devolva entusiasmo para a nova semana."
+      ]
+    }
+  },
+  "natal": {
+    "combinations": {
+      "starts": [
+        "Que a luz do Natal renove",
+        "Nesta celebração, compartilhe",
+        "Que o espírito natalino desperte",
+        "Ao redor da árvore, celebre",
+        "Que cada luz de Natal represente",
+        "Neste Natal, permita que floresçam",
+        "Que a noite natalina seja repleta de",
+        "Entre presentes e abraços, valorize",
+        "Que o nascimento de Jesus inspire",
+        "Para sua família neste Natal, desejo"
+      ],
+      "endings": [
+        "a esperança, a união e a paz em sua família.",
+        "amor sincero e generosidade em cada gesto.",
+        "gratidão pelo caminho e fé no futuro.",
+        "abraços apertados e memórias inesquecíveis.",
+        "um desejo de saúde, harmonia e prosperidade.",
+        "reconciliação, bondade e cuidado com o próximo.",
+        "alegria simples e presença verdadeira.",
+        "o presente maior de estar junto de quem se ama.",
+        "fé, humildade e um coração disposto a acolher.",
+        "uma celebração iluminada, segura e cheia de carinho."
+      ]
+    }
+  },
+  "pascoa": {
+    "combinations": {
+      "starts": [
+        "Que a Páscoa renove",
+        "Nesta Páscoa, celebre",
+        "Que a mensagem da ressurreição traga",
+        "Entre flores e novos começos, preserve",
+        "Que a alegria pascal desperte",
+        "Nesta celebração de vida, compartilhe",
+        "Que cada símbolo da Páscoa recorde",
+        "Ao reunir a família, valorize",
+        "Que o domingo de Páscoa seja marcado por",
+        "Para esta Páscoa, desejo"
+      ],
+      "endings": [
+        "sua fé, sua esperança e sua confiança na vida.",
+        "amor, união e gestos sinceros de cuidado.",
+        "paz ao coração e coragem para recomeçar.",
+        "a certeza de que a vida sempre pode florescer novamente.",
+        "gratidão, generosidade e alegria em família.",
+        "o significado profundo do perdão e da renovação.",
+        "momentos doces e lembranças cheias de afeto.",
+        "a vitória da luz, da fé e da esperança.",
+        "bênçãos para sua casa e para todos que você ama.",
+        "uma celebração serena, bonita e verdadeiramente especial."
+      ]
+    }
+  },
+  "bomsabado": {
+    "combinations": {
+      "starts": [
+        "Que seu sábado comece com",
+        "Aproveite este sábado para viver",
+        "Que a manhã de sábado ofereça",
+        "Hoje é sábado: receba",
+        "Que este dia de descanso traga",
+        "Desacelere neste sábado e escolha",
+        "Para o seu sábado, desejo",
+        "Que o café deste sábado acompanhe",
+        "Sábado é tempo de cultivar",
+        "Que cada hora deste sábado tenha"
+      ],
+      "endings": [
+        "um café gostoso, paz e motivos para sorrir.",
+        "natureza, descanso e boa companhia.",
+        "leveza para a mente e alegria para o coração.",
+        "tempo livre para tudo o que faz bem.",
+        "passeios tranquilos e lembranças felizes.",
+        "flores, sol e uma energia acolhedora.",
+        "liberdade para descansar sem culpa.",
+        "momentos simples vividos sem nenhuma pressa.",
+        "carinho, lazer e conversas agradáveis.",
+        "a felicidade serena de um dia bem aproveitado."
+      ]
+    }
+  },
+  "felizdomingo": {
+    "combinations": {
+      "starts": [
+        "Que seu domingo seja iluminado por",
+        "Neste domingo, receba",
+        "Que a paz deste domingo alcance",
+        "Comece o domingo agradecendo por",
+        "Que Deus abençoe seu domingo com",
+        "Para este dia especial, desejo",
+        "Que o amanhecer de domingo traga",
+        "Domingo é tempo de valorizar",
+        "Que sua família compartilhe",
+        "Ao viver este domingo, preserve"
+      ],
+      "endings": [
+        "paz, saúde e momentos felizes em família.",
+        "descanso para o corpo e serenidade para a alma.",
+        "bênçãos, proteção e esperança renovada.",
+        "a alegria de estar perto de quem você ama.",
+        "um coração tranquilo e uma casa cheia de harmonia.",
+        "natureza, afeto e conversas que fazem bem.",
+        "fé para a nova semana e gratidão pelo caminho.",
+        "um almoço alegre e lembranças carinhosas.",
+        "tempo de qualidade sem pressa e sem preocupações.",
+        "a certeza de que Deus cuida de cada detalhe."
+      ]
+    }
+  }
 }

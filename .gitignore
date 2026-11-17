@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.tmp
+*.tmp.jpg
+*.tmp.json
+.generation-staging/
+.generation-backup/
+.generation-transaction.json
+.cloud-library/
+.phase9-state-checkout/
+.phase9-artifact/
+.idea/
+*.log

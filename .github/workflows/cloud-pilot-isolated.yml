@@ -1,0 +1,176 @@
+name: BOMDIAWHATS Cloud Pilot (isolado)
+
+# Agendamento futuro, intencionalmente desativado:
+# on:
+#   schedule:
+#     - cron: "0 9 * * *"
+on:
+  workflow_dispatch:
+    inputs:
+      categories:
+        description: "Categorias separadas por vírgula; use bomdia no primeiro piloto"
+        required: true
+        default: "bomdia"
+        type: string
+      persist_state:
+        description: "Persistir biblioteca na branch bomdiawhats-cloud-state"
+        required: true
+        default: false
+        type: boolean
+      use_tesseract:
+        description: "Executar OCR Tesseract real no candidato simulado"
+        required: true
+        default: true
+        type: boolean
+      max_calls:
+        description: "Limite diário de candidatos"
+        required: true
+        default: "57"
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bomdiawhats-cloud-pilot-state
+  cancel-in-progress: false
+
+jobs:
+  isolated-pilot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      # O primeiro piloto não recebe credenciais Cloudflare.
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout do código sem alterar produção
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Checkout do estado operacional
+        if: inputs.persist_state
+        uses: actions/checkout@v4
+        with:
+          ref: bomdiawhats-cloud-state
+          path: .phase9-state-checkout
+          fetch-depth: 0
+          lfs: true
+
+      - name: Restaurar biblioteca persistente
+        if: inputs.persist_state
+        shell: bash
+        run: |
+          mkdir -p .cloud-library
+          if [ -d .phase9-state-checkout/.cloud-library ]; then
+            cp -a .phase9-state-checkout/.cloud-library/. .cloud-library/
+          fi
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependências Linux, OCR, fontes e Git LFS
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes tesseract-ocr tesseract-ocr-eng tesseract-ocr-por git-lfs fonts-dejavu-core fonts-liberation
+          git lfs install --local
+          python -m pip install --requirement requirements.txt
+          tesseract --version
+          git lfs version
+
+      - name: Validar ambiente e regressão
+        shell: bash
+        run: |
+          python -m py_compile phase7_background_library.py phase8_production_integration.py phase9_cloud_operation.py
+          python -c "import shutil; assert shutil.which('tesseract'); import gerar_imagens as g; g.validate_font_environment()"
+          python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Executar lote simulado isolado
+        shell: bash
+        run: |
+          TESSERACT_ARG=""
+          if [ "${{ inputs.use_tesseract }}" = "true" ]; then TESSERACT_ARG="--use-tesseract"; fi
+          python phase9_cloud_operation.py \
+            --date "$(date -u +%F)" \
+            --categories "${{ inputs.categories }}" \
+            --state-root ".cloud-library" \
+            --staging-root ".generation-staging/ai-background-phase9" \
+            --max-calls "${{ inputs.max_calls }}" \
+            --max-neurons "9849.6" \
+            $TESSERACT_ARG
+
+      - name: Verificar isolamento do catálogo público
+        shell: bash
+        run: |
+          if ! git diff --quiet -- imagens index.json image-credits.json; then
+            echo "ERRO: o piloto alterou o catálogo público."
+            git diff --name-only -- imagens index.json image-credits.json
+            exit 1
+          fi
+
+      - name: Verificar integridade LFS do estado
+        shell: bash
+        run: |
+          git lfs fsck
+          if [ -d .phase9-state-checkout/.git ]; then
+            (cd .phase9-state-checkout && git lfs fsck)
+          fi
+          find .cloud-library/backgrounds -type f -size 0 -print -quit 2>/dev/null | grep -q . && exit 1 || true
+
+      - name: Preservar diagnóstico isolado
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase9-isolated-${{ github.run_id }}
+          path: |
+            .generation-staging/ai-background-phase9
+            .cloud-library
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: ignore
+
+  persist-isolated-state:
+    if: inputs.persist_state
+    needs: isolated-pilot
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    concurrency:
+      group: bomdiawhats-cloud-pilot-state-write
+      cancel-in-progress: false
+    steps:
+      - name: Checkout exclusivo da branch operacional
+        uses: actions/checkout@v4
+        with:
+          ref: bomdiawhats-cloud-state
+          fetch-depth: 0
+          lfs: true
+
+      - name: Baixar estado validado do piloto
+        uses: actions/download-artifact@v4
+        with:
+          name: phase9-isolated-${{ github.run_id }}
+          path: .phase9-artifact
+
+      - name: Persistir somente biblioteca e journals
+        shell: bash
+        run: |
+          test -f .phase9-artifact/.cloud-library/background-library.json
+          rm -rf .cloud-library
+          cp -a .phase9-artifact/.cloud-library .cloud-library
+          git lfs install --local
+          git lfs track ".cloud-library/backgrounds/**"
+          git add -- .cloud-library .gitattributes
+          git diff --cached --check
+          git lfs fsck
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: persistir estado isolado da biblioteca"
+          git push origin HEAD:bomdiawhats-cloud-state
