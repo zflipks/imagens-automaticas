@@ -1,0 +1,199 @@
+{
+  "schema": "bomdiawhats.daily-catalog/v1",
+  "catalog_version": "experimental-amizade-lote-001-v1",
+  "date": "2026-11-19",
+  "timezone": "America/Sao_Paulo",
+  "generated_at": "2026-11-19T13:51:21-03:00",
+  "experimental": true,
+  "publishable": false,
+  "complete_daily_catalog": false,
+  "catalog_scope": "single_category_test",
+  "categories": {
+    "amizade": [
+      {
+        "id": "amizade-001",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-001.webp",
+        "object_key": "testes/amizade/lote-001/amizade-001.webp",
+        "sha256": "fc2c74639bfd32b9394c43bbaaa90c50d17a5606ae52699e91d90e5c2bb83aad",
+        "bytes": 355226,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-001",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-002",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-002.webp",
+        "object_key": "testes/amizade/lote-001/amizade-002.webp",
+        "sha256": "3126929016bbc8738149335bdb92a62268712e94fc567e21c30e7d465a0d91c9",
+        "bytes": 304870,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-002",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-003",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-003.webp",
+        "object_key": "testes/amizade/lote-001/amizade-003.webp",
+        "sha256": "d6682e4b3b4cc420e4675a7ec533b2bca990be4dafdc732553a895becb7565a7",
+        "bytes": 353114,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-003",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-004",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-004.webp",
+        "object_key": "testes/amizade/lote-001/amizade-004.webp",
+        "sha256": "0981e56c207ff49e92a00fce0eebb706e6f550dac8cdff0104d3a9e7b88b7242",
+        "bytes": 264454,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-004",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-005",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-005.webp",
+        "object_key": "testes/amizade/lote-001/amizade-005.webp",
+        "sha256": "c9333040c47b46c7e973bca9f639c5d06eace695a73d3583008c8bb55ff035da",
+        "bytes": 484764,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-005",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-006",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-006.webp",
+        "object_key": "testes/amizade/lote-001/amizade-006.webp",
+        "sha256": "d1938432422a978886a2d4ef8a1eff3c5bcba626c34ad5ecbbb00b6788e3e3df",
+        "bytes": 335284,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-006",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-007",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-007.webp",
+        "object_key": "testes/amizade/lote-001/amizade-007.webp",
+        "sha256": "cc3a5b0a509dc0b113a713ccdec5c1ea2018b3f90f9d927f716964865d9f321d",
+        "bytes": 313538,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-007",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-008",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-008.webp",
+        "object_key": "testes/amizade/lote-001/amizade-008.webp",
+        "sha256": "d9b2ed87ca8e6fe36e344d77dbc1501fc0e04604742f65b389d098a7375d26c4",
+        "bytes": 339814,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-008",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-009",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-009.webp",
+        "object_key": "testes/amizade/lote-001/amizade-009.webp",
+        "sha256": "2c89f27297cb9d3bf8194acca2aaa16be735b1a9f2e8b6f690477f1cb95dfe74",
+        "bytes": 335348,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-009",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-010",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-010.webp",
+        "object_key": "testes/amizade/lote-001/amizade-010.webp",
+        "sha256": "93ee2339fc9c42831bbd9c2a035f217fcc65304815c9f81faf4c817f07914323",
+        "bytes": 390308,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-010",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-011",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-011.webp",
+        "object_key": "testes/amizade/lote-001/amizade-011.webp",
+        "sha256": "ddaafa0685603388c2b24416c613ae9528261b93f524d44617d99ae1e3167429",
+        "bytes": 298902,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-011",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-012",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-012.webp",
+        "object_key": "testes/amizade/lote-001/amizade-012.webp",
+        "sha256": "f5b9e3a0b3a7fb33d3eaf1a5a6926a117f3cd9f05af8af863e4c1e5ab0a3fb3d",
+        "bytes": 451812,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-012",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-013",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-013.webp",
+        "object_key": "testes/amizade/lote-001/amizade-013.webp",
+        "sha256": "6af5429d34a71d35a5ad83ed72197f1faf93e36f8f56cc25f17b2372e1200993",
+        "bytes": 301154,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-013",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-014",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-014.webp",
+        "object_key": "testes/amizade/lote-001/amizade-014.webp",
+        "sha256": "105d76d317cf0fa2a9618e0e347b0c7be31e5a8dc773253488514c790c7db9e1",
+        "bytes": 495878,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-014",
+        "approval_status": "experimental_pending_visual_approval"
+      },
+      {
+        "id": "amizade-015",
+        "url": "https://pub-0667e6dc60d7472e9a12b04f581542c5.r2.dev/testes/amizade/lote-001/amizade-015.webp",
+        "object_key": "testes/amizade/lote-001/amizade-015.webp",
+        "sha256": "0f9e8dac490b367026a079efc3dd0ff610158996b282f989eab7694800c4d2c9",
+        "bytes": 322144,
+        "media_type": "image/webp",
+        "width": 1254,
+        "height": 1254,
+        "source_asset_id": "amizade-015",
+        "approval_status": "experimental_pending_visual_approval"
+      }
+    ]
+  },
+  "history": {
+    "retention_days": 60,
+    "usage_registry_version": "experimental-amizade-lote-001"
+  }
+}
